@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   validates :image_id, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
-  
+
   def get_image_id
     (image_id.attached?) ? image_id : 'no_image.jpg'
   end
