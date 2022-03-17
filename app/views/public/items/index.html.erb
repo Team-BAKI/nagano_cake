@@ -1,0 +1,11 @@
+<%= render 'genre_search', genres: @genres %>
+
+
+<%= image_tag @item.get_image_id, size: '50×50' %>
+<%= @item.name %>
+<%= @item.introduction %>
+￥<%= (@item.price*1.1).flo%>(税込)
+
+個数選択
+カートに入れる
+税込価格
