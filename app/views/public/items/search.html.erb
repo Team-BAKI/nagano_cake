@@ -1,0 +1,17 @@
+<%= render 'genre_search', genres: @genres %>
+
+
+<h2><%= @genre.name %>一覧</h2><span>全<%= @items.count %>件</span>
+
+<div class="items">
+<% @items.each do |item| %>
+  <div class="item-box">
+    <%= link_to item_path(item) do %>
+      <%= image_tag item.get_image_id, size:"50x50" %>
+      <%= item.name %>
+    <% end %>
+    ￥<%= item.price.to_s(:delimited) %>
+  </div>
+<% end %>
+</div>
+<%= paginate @items %>
