@@ -31,7 +31,8 @@ Rails.application.routes.draw do
     end
 
     get '/orders/complete' => 'orders#complete'
-
+    
+  
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

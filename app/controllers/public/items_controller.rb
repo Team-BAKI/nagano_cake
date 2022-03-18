@@ -6,12 +6,12 @@ class Public::ItemsController < ApplicationController
 
   def show
     @genres = Genre.all
-    @item = Items.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def search
     @genres = Genre.all
-    @genre = 
+    @genre = Genre.find(params[:item_id])
     @items = Item.where(params[:id]).page(params[:page])
   end
 
