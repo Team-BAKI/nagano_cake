@@ -4,10 +4,10 @@
 
 <table>
   <tr>
-    <th>氏名</th><th><%= @customers.last_name %></th>
+    <th>氏名</th><th><%= @customers.last_name + @customers.first_name %></th>
   </tr>
   <tr>
-    <th>カナ</th><th><%= @customers.last_name_kana %></th>
+    <th>カナ</th><th><%= @customers.last_name_kana + @customers.first_name_kana %></th>
   </tr>
   <tr>
     <th>郵便番号</th><th><%= @customers.postal_code %></th>
