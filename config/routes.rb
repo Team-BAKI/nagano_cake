@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :customers,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
-
   scope module: :public do
 
     root :to => "homes#top"
@@ -15,6 +10,11 @@ Rails.application.routes.draw do
       get 'unsubscribe' => 'customers#unsubscribe'
       patch 'withdraw' => 'customers#withdraw'
     end
+
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
