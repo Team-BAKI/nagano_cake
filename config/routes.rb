@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      get 'search' => "items#search"
+    end
 
     resources :cart_items, only: [:index, :update, :destroy, :create]
 
@@ -29,7 +31,8 @@ Rails.application.routes.draw do
     end
 
     get '/orders/complete' => 'orders#complete'
-
+    
+  
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
