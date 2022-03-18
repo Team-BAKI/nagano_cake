@@ -14,4 +14,10 @@ class Item < ApplicationRecord
   def get_image_id
     (image_id.attached?) ? image_id : 'no_image.jpg'
   end
+
+  ## 消費税を求めるメソッド
+  def with_tax_price
+    (price * 1.1).floor
+  end
+
 end
