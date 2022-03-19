@@ -22,7 +22,6 @@ class Public::CustomersController < ApplicationController
   private
   
   def customers_params
-    params.require(:customers).permit(:last_name, :first_name)
   end
 
 
