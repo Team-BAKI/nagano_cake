@@ -6,4 +6,9 @@ class Customer < ApplicationRecord
          
   has_many :cart_imems, dependent: :destroy
   has_many :items, through: :cart_imems
+
+ def full_name
+  self.last_name + self.first_name
+ end
+ 
 end
