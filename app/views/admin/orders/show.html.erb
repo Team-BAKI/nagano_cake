@@ -1,5 +1,7 @@
-  <h2>注文履歴詳細</h2>
-  <table class="table">
+  <div>
+    <h2>注文履歴詳細</h2>
+  </div>
+  <table class="table table-borderless">
     <tbody>
       <tr>
         <th>購入者</th>
@@ -31,7 +33,7 @@
         <%= form_with model: [:admin, @order], method: :patch, local: true do |f| %>
         <td>
           <%= f.select :status, options_for_select(Order.statuses_i18n.invert, selected: @order.status) %>
-          <%= f.submit "更新" %>
+          <%= f.submit "更新", class:"btn btn-success" %>
         </td>
         <% end %>
       </tr>
@@ -39,7 +41,7 @@
 </table>
 
 <table class="table">
-  <thead>
+  <thead class="thead-light">
     <tr>
       <th>商品名</th>
       <th>単価（税込）</th>
@@ -58,10 +60,14 @@
       <td><%= (order_detail.price * order_detail.amount).to_s(:delimited) %></td>
       <%= form_with model:  [:admin, order_detail], method: :patch, local: true do  |f| %>
       <td>
-        <%= f.select :making_status, options_for_select(OrderDetail.making_statuses_i18n.invert, selected: order_detail.making_status) %>
+        <div class="form-group">
+          <%= f.select :making_status, options_for_select(OrderDetail.making_statuses_i18n.invert, selected: order_detail.making_status) %>
+        </div>
       </td>
       <td>
-        <%= f.submit "更新" %>
+        <div class="form-group">
+          <%= f.submit "更新", class:"btn btn-success" %>
+        </div>
       </td>
       <% end %>
     </tr>
@@ -69,11 +75,11 @@
   </tbody>
 </table>
 
-<table class="table">
+<table class="table table-borderless">
   <tbody>
     <tr>
       <th>商品合計</th>
-      <td><%= @order_details.sum(:price).to_s(:delimited) %></td>
+      <td><%= @order.total_product_price.to_s(:delimited) %></td>
     </tr>
     <tr>
       <th>送料</th>
