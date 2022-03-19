@@ -1,11 +1,11 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer_id: current_customer.id)
   end
 
   def update
-    @cart_item = CartItem.find(params[:id])
-    @cart_item.update(cart_item_params)
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
     redirect_to cart_items_path
   end
 
@@ -16,7 +16,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    current_user.cart_items.destroy_all
+    current_customer.cart_items.destroy_all
+    redirect_to cart_items_path
   end
 
   def create
@@ -24,12 +25,11 @@ class Public::CartItemsController < ApplicationController
     @cart_item.customer_id = current_customer.id
 
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
-      current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).amount += params[:cart_item][:amount].to_i
-			current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).save
-			flash[:notice] = "Item was successfully added to cart."
+      cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      cart_item.amount += params[:cart_item][:amount].to_i
+			cart_item.save
 			redirect_to cart_items_path
     else @cart_item.save
-			flash[:notice] = "New Item was successfully added to cart."
 			redirect_to cart_items_path
     end
   end

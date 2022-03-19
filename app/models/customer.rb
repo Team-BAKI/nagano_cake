@@ -4,8 +4,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  has_many :cart_imems, dependent: :destroy
-  has_many :items, through: :cart_imems
+  has_many :cart_items, dependent: :destroy
+  has_many :items, through: :cart_items
 
  def full_name
   self.last_name + self.first_name
