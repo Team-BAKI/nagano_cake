@@ -1,0 +1,49 @@
+<h2>ショッピングカート</h2>
+<%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td>
+          <%= image_tag cart_item.item.get_image_id, size:"50x50" %>
+          <%= cart_item.item.name %>
+        </td>
+        <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+        <td>
+          <%= form_with model:@cart_item, method: :patch, local:true do |f| %>
+            <div class="form-group">
+              <%= f.select :amount, [1, 2, 3, 4, 5, 6, 7, 8, 9,  10] %>
+            </div>
+            <div class="form-group">
+              <%= f.submit "変更", class: 'btn btn-success' %>
+            </div>
+          <% end %>
+        </td>
+        <td><%= cart_item.subtotal %></td>
+        <td><%= link_to "削除する", cart_item(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% @cart_items.each do |cart_item| %>
+<% @sum = 0 %>
+  <% @sum +=  cart_item.subtotal %>
+<% end %>
+<!--view内でインスタンス変数与えられる？-->
+合計金額　<%= @sum %>
+
+
+買い物を続ける
+<%= link_to "買い物を続ける", items_path, class: 'btn btn-primary' %>
+<%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success' %>
