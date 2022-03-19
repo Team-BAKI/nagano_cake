@@ -1,0 +1,37 @@
+<h2>注文情報入力</h2>
+
+<div>
+ 支払方法
+ <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+ <%= f.label :payment_method, Order.payment_methods_i18n[:credeit_card] %>
+ 
+ <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+ <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+</div>
+
+<div>
+  お届け先
+  <!--どうやって三つの情報わたす？-->
+  <%= f.radio_button :addres_id, @current_customer. %>
+　<%= f.label :addres_id, "ご自身の住所" %>
+　<%= '〒' + current_customer.postal_code + ' ' + current_customer.address %>
+　<%= current_customer.last_name + ' ' + current_customer.first.name %>
+  
+  
+  <%= f.radio_button :addres_id, @current_customer. %>
+  <%= f.label :address_id, "登録住所からの選択" %> 
+  <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+  
+  
+  <%= f.radio_button :addres_id, @current_customer. %>
+  <%= f.label :address_id, "新しいお届け先" %>
+  <%= form_with model:order,local:true do |f| %>
+  
+  <% end %>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control book_title' %>
+  郵便番号（ハイフンなし）
+　住所
+　宛先
+  
+</div>
