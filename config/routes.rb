@@ -22,17 +22,19 @@ Rails.application.routes.draw do
       get 'search' => "items#search"
     end
 
-    resources :cart_items, only: [:index, :update, :destroy, :create]
-
-    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
-
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
+ 
     resources :orders, only: [:new, :create, :index, :show] do
       post 'confirm' => 'orders#confirm'
+      collection do
+        get 'complete'
+      end
     end
 
-    get '/orders/complete' => 'orders#complete'
-    
-  
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
