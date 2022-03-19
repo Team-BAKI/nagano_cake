@@ -1,0 +1,18 @@
+
+<%= form_with url: addresses_path do |f| %>
+  <div>
+    <%= f.label :"郵便番号(ハイフンなし)" %>
+    <%= f.text_field :postal_code, row: '4', placeholder: data.postal_code %>
+  </div>
+  <div>
+    <%= f.label :"住所" %>
+    <%= f.text_field :address, row: '6', placeholder: data.address %>
+  </div>
+  <div>
+    <%= f.label :"宛名" %>
+    <%= f.text_field :name, row: '4', placeholder: data.last_name + data.first_name %>
+  </div>
+  <div>
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>
