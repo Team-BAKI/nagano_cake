@@ -1,8 +1,13 @@
-class CustomersController < ApplicationController
+class Public::CustomersController < ApplicationController
+
+
+
   def show
+    @customers = current_customer
   end
 
   def edit
+    @customers = current_customer
   end
 
   def update
@@ -13,5 +18,14 @@ class CustomersController < ApplicationController
 
   def withdraw
   end
+
+  private
+  
+  def customers_params
+  end
+
+
+
+
 
 end
