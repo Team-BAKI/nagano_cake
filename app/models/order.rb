@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   enum payment_method: { credit_card: 0, transfer: 1 }
   enum status: { waiting: 0, confirm: 1, making: 2, preparing: 3, shipped: 4}
 
-  def sum
+  def total_product_price
     total_product_price = 0
     self.order_details.each do |order_detail|
       sum = order_detail.price * order_detail.amount
