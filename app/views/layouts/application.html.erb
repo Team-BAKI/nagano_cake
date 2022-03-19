@@ -13,7 +13,7 @@
   <body>
     <% if current_customer == nil && current_admin == nil %>
       <%= render 'layouts/guest_header'%>
-    <% elsif current_customer == nil && current_admin == present %>
+    <% elsif current_customer == nil && current_admin.present? %>
       <%= render 'layouts/admin_header' %>
 
     <% end %>
