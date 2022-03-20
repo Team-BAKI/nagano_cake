@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :customers,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
-
   scope module: :public do
 
     root :to => "homes#top"
@@ -16,23 +11,30 @@ Rails.application.routes.draw do
       patch 'withdraw' => 'customers#withdraw'
     end
 
+    devise_for :customers,skip: [:passwords], controllers: {
+      registrations: "public/registrations",
+      sessions: 'public/sessions'
+    }
+
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
     resources :items, only: [:index, :show] do
       get 'search' => "items#search"
     end
 
-    resources :cart_items, only: [:index, :update, :destroy, :create]
-
-    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
-
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
+ 
     resources :orders, only: [:new, :create, :index, :show] do
       post 'confirm' => 'orders#confirm'
+      collection do
+        get 'complete'
+      end
     end
 
-    get '/orders/complete' => 'orders#complete'
-    
-  
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
