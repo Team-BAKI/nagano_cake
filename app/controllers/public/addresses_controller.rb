@@ -3,7 +3,9 @@ class Public::AddressesController < ApplicationController
     @customer = current_customer
     @address = Address.new
     @addresses = Address.all
+    # where(customer_id: current_customer.id)
   end
+
 
   def edit
     @address = Address.find(params[:id])
@@ -34,9 +36,9 @@ class Public::AddressesController < ApplicationController
   end
 
   private
-
+  
   def address_params
-    params.permit(:name, :postal_code, :address)
+    params.permit(:customer_id, :name, :postal_code, :address)
   end
 
 end
