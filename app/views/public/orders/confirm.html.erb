@@ -1,0 +1,48 @@
+<h2>注文情報確認</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>表品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @order_details.each do |order_detail| %>
+     <tr>
+       <td>
+         <%= image_tag order_detail.item.get_image_id %>
+         <%= order_detail.item.name %>
+       </td>
+       <td><%= order_detail.price %></td>
+       <td><%= order_detail.amount %></td>
+       <td><%= order_detail.total_item_price %></td>
+     </tr>
+     <% end %>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>送料</th>
+      <th>商品合計</th>
+      <th>請求合計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @order.shipping_cost %></td>
+      <td><%= @order.total_product_price %></td>
+      <td><%= @order.total_payment %></td>
+    </tr>
+  </tbody>
+</table>
+
+支払方法<%= @order.payment_method_i18n %>
+お届け先 〒<%= @order.postal_code + " " + @order.address %><br>
+          <%= @order.name %>
+          
+<%= link_to "注文を確定する", complete_orders_path, class:"btn btn-success" %>

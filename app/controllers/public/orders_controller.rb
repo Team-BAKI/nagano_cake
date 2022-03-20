@@ -3,6 +3,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @order_details = OrderDetail.where(order_id: XXX)
+    @order = Order.find(parms[XXX])
   end
 
   def complete
