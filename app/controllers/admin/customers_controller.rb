@@ -15,7 +15,7 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to admin_customer_path(@customer.id)
+      redirect_to admin_customers_path(@customer.id)
     else
       @customers = Customer.page(params[:page])
       render :edit
@@ -24,7 +24,7 @@ class Admin::CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email,
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, 
                                      :postal_code, :address, :telephone_number, :is_deleted)
   end
 end
