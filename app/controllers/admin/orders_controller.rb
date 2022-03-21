@@ -9,7 +9,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update!(order_params)
+    @order.update(order_params)
     if @order.status_before_type_cast == 1
       @order.order_details.update_all(making_status: 1)
     end
