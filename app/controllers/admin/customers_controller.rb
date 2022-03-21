@@ -1,7 +1,7 @@
 class Admin::CustomersController < ApplicationController
 
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page])
   end
 
   def show
@@ -17,7 +17,7 @@ class Admin::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to admin_customer_path(@customer.id)
     else
-      @customers = Customer.all
+      @customers = Customer.page(params[:page])
       render :edit
     end
   end
