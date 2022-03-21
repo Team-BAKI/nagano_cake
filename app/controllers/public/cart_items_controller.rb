@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.where(customer_id: current_customer.id)
-  end
+    @cart_items = CartItem.
+  endwhere(customer_id: current_customer.id)
 
   def update
     cart_item = CartItem.find(params[:id])
