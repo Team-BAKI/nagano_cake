@@ -30,12 +30,14 @@
       </tr>
       <tr>
         <th>注文ステータス</th>
-        <%= form_with model: [:admin, @order], method: :patch, local: true do |f| %>
+        
         <td>
+          <%= form_with model: [:admin, @order], method: :patch, local: true do |f| %>
           <%= f.select :status, options_for_select(Order.statuses_i18n.invert, selected: @order.status) %>
           <%= f.submit "更新", class:"btn btn-success" %>
+          <% end %>
         </td>
-        <% end %>
+        
       </tr>
     </tbody>
 </table>
@@ -58,18 +60,14 @@
       <td><%= order_detail.price.to_s(:delimited) %></td>
       <td><%= order_detail.amount %></td>
       <td><%= (order_detail.price * order_detail.amount).to_s(:delimited) %></td>
-      <%= form_with model:  [:admin, order_detail], method: :patch, local: true do  |f| %>
+      
       <td>
-        <div class="form-group">
+        <%= form_with model:  [:admin, order_detail], method: :patch, local: true do  |f| %>
           <%= f.select :making_status, options_for_select(OrderDetail.making_statuses_i18n.invert, selected: order_detail.making_status) %>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
           <%= f.submit "更新", class:"btn btn-success" %>
-        </div>
+        <% end %>
       </td>
-      <% end %>
+      
     </tr>
     <% end %>
   </tbody>
