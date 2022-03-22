@@ -5,24 +5,26 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    @select = params[:select_address].to_i
+    @select = params[:order][:select_address].to_i
+   
     if @select == 0
+      puts "@select : #{@select}"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     elsif @select == 1
-      @address = Address.find(params[:order][:select])
-      @order.postal_code = @address.postal_code
-      @order.address = @address.address
-      @order.name = @address.name
+      puts "@select : #{@select}"
+      address = Address.find(params[:order][:registered_address])
+      @order.postal_code = address.postal_code
+      @order.address = address.address
+      @order.name = address.name
     elsif @select == 2
-      @order.postal_code = params[:postal_code]
-      @order.address = params[:address]
-      @order.name = params[:name]
+      puts "@select : #{@select}"
+      @order.postal_code = params[:order][:postal_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
     end
     @cart_items = CartItem.where(customer_id: current_customer.id)
-
-    @order.payment_method = params[:payment_method]
   end
 
   def complete

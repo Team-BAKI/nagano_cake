@@ -1,4 +1,4 @@
-<h2>注文情報入力</h2>
+<h1>注文情報入力</h1>
 
 <%= form_with model:@order, url: "/orders/:order_id/confirm", method: :post, local: true do |f| %>
   <div>
@@ -20,8 +20,8 @@
 
     <%= f.radio_button :select_address, 1 %>
     <%= f.label :address_id, "登録住所からの選択" %>
-    <%= f.select :select, options_from_collection_for_select(Address.where(customer_id: current_customer.id), :id, :address_display) %></br>
-
+    <%#= f.select :registered_address, options_from_collection_for_select(Address.where(customer_id: current_customer.id), :id, :address_display) %>
+    <%= f.collection_select :registered_address, Address.where(customer_id: current_customer.id), :id, :address_display %></br>
 
     <%= f.radio_button :select_address, 2 %>
     <%= f.label :address_id, "新しいお届け先" %></br>
