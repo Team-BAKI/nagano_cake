@@ -27,7 +27,7 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
- 
+
     resources :orders, only: [:new, :create, :index, :show] do
       post 'confirm' => 'orders#confirm'
       collection do
