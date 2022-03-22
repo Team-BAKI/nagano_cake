@@ -1,0 +1,7 @@
+<header>
+    ようこそ、<%= current_customer.last_name %>さん！
+    <%= link_to "マイページ",   my_page_customers_path %>
+    <%= link_to "商品一覧", admin_items_path %>
+    <%= link_to "カート", cart_items_path %>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+</header>
