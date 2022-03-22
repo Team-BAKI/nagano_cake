@@ -8,4 +8,6 @@ class OrderDetail < ApplicationRecord
     price*amount
   end
   
+  
+  
 end

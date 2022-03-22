@@ -8,18 +8,15 @@ class Public::OrdersController < ApplicationController
     @select = params[:order][:select_address].to_i
    
     if @select == 0
-      puts "@select : #{@select}"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     elsif @select == 1
-      puts "@select : #{@select}"
       address = Address.find(params[:order][:registered_address])
       @order.postal_code = address.postal_code
       @order.address = address.address
       @order.name = address.name
     elsif @select == 2
-      puts "@select : #{@select}"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
@@ -44,7 +41,7 @@ class Public::OrdersController < ApplicationController
         order_detail = OrderDetail.new
         order_detail.order_id = @order.id
         order_detail.item_id = cart_item.item_id
-        order_detail.price = cart_item.item.price
+        order_detail.price = (cart_item.item.price * 1.1).floor
         order_detail.amount = cart_item.amount
         order_detail.making_status = 0
         order_detail.save
@@ -76,5 +73,7 @@ class Public::OrdersController < ApplicationController
     end
     return total_item_price
   end
+  
+
 
 end
