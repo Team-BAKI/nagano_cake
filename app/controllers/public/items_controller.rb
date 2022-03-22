@@ -16,5 +16,4 @@ class Public::ItemsController < ApplicationController
     @items = Item.where(params[:id]).page(params[:page])
   end
 
-
 end
