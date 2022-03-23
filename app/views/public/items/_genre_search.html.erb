@@ -1,16 +1,8 @@
-<table class='table table-bordered'>
-  <thead>
-    <tr>
-      <th　width="80">ジャンル検索</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td　width="80">
-        <% genres.each do |genre| %>
-          <%= link_to genre.name, item_search_path(genre) %>
-        <% end %></br>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class='card'>
+  <h6 class="card-header bg-white text-center font-weight-bold">ジャンル検索</h6>
+  <div class=" h-75 card-body">
+    <% genres.each do |genre| %>
+      <%= link_to genre.name, item_search_path(genre), class: "text-dark" %><br>
+    <% end %>
+  </div>
+</div>
