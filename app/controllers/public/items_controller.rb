@@ -1,7 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
     @genres = Genre.all
-    @items = Item.all.page(params[:page])
+    @items = Item.all.page(params[:page]).per(8)
   end
 
   def show
@@ -13,7 +13,7 @@ class Public::ItemsController < ApplicationController
   def search
     @genres = Genre.all
     @genre = Genre.find(params[:item_id])
-    @items = Item.where(params[:id]).page(params[:page])
+    @items = Item.where(genre_id: params[:item_id]).page(params[:page]).per(8)
   end
 
 end
