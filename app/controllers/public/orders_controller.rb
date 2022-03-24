@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
   end
@@ -6,7 +8,7 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @select = params[:order][:select_address].to_i
-   
+
     if @select == 0
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -73,7 +75,7 @@ class Public::OrdersController < ApplicationController
     end
     return total_item_price
   end
-  
+
 
 
 end
