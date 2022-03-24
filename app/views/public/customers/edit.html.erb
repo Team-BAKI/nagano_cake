@@ -1,3 +1,4 @@
+
 <div class = "container">
   <div class="col-12 col-md-8">
     <%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
@@ -7,43 +8,38 @@
         <div class="form-group row">
           <%= f.label :氏名, class:"col-sm-3 col-form-label" %>
           <div class="col-md-3">
-            <%= f.text_field :last_name, class:"form-control" %>
+            <%= f.text_field :last_name, class:"form-control field_border" %>
           </div>
           <div class="col-md-3">
-            <%= f.text_field :first_name, class:"form-control" %>
+            <%= f.text_field :first_name, class:"form-control field_border" %>
           </div>
         </div>
         <div class="form-group row">
           <%= f.label :フリガナ, class:"col-sm-3 col-form-label" %>
           <div class="col-md-3">
-            <%= f.text_field :last_name_kana, class:"form-control" %>
+            <%= f.text_field :last_name_kana, class:"form-control field_border" %>
           </div>
           <div class="col-md-3">
-            <%= f.text_field :first_name_kana, class:"form-control" %>
+            <%= f.text_field :first_name_kana, class:"form-control field_border" %>
           </div>
         </div>
-        <div class="form-group row">
-          <%= f.label :郵便番号, class:"col-sm-3 col-form-label" %>
-          <div class="col-md-3">
-            <%= f.text_field :postal_code, class: 'form-control' %>
-          </div>
-        </div>
+        
         <div class="form-group row">
           <%= f.label :住所, class:"col-sm-3 col-form-label" %>
           <div class="col-md-9">
-            <%= f.text_field :address, class: 'form-control' %>
+            <%= f.text_field :address, class: 'form-control field_border' %>
           </div>
         </div>
         <div class="form-group row">
           <%= f.label :電話番号, class:"col-sm-3 col-form-label" %>
           <div class="col-md-3">
-            <%= f.text_field :telephone_number, class: 'form-control' %>
+            <%= f.text_field :telephone_number, class: 'form-control field_border' %>
           </div>
         </div>
         <div class="form-group row">
           <%= f.label :メールアドレス, class:"col-sm-3 col-form-label" %>
           <div class="col-md-3">
-            <%= f.text_field :email, class: 'form-control' %>
+            <%= f.text_field :email, class: 'form-control field_border' %>
           </div>
         </div>
         <div class="form-group row">
