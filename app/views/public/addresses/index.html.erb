@@ -7,35 +7,36 @@
           <div class = "form-group row font-weight-bold" >
             <%= f.label "郵便番号(ハイフンなし)", class:"mr-0 col-sm-4 col-form-label" %>
             <div class = "col-sm-4" >
-              <%= f.text_field :postal_code, class:"form-control" %>
+              <%= f.text_field :postal_code, placeholder: @customer.postal_code, class:"form-control field_border" %>
             </div>
           </div>
           <div class= "form-group row font-weight-bold" >
             <%= f.label "住所", class:"mr-0 col-sm-4 col-form-label" %>
             <div class = "col-md-8" >
-              <%= f.text_field :address, class:"form-control" %>
+              <%= f.text_field :address, placeholder: @customer.address, class:"form-control field_border" %>
             </div>
           </div>
           <div class = "form-group row font-weight-bold" >
             <%= f.label "宛名", class:"mr-0 col-sm-4 col-form-label" %>
             <div class = "col-md-4" >
-              <%= f.text_field :name, class:"form-control" %>
+              <%= f.text_field :name, placeholder: @customer.full_name, class:"form-control field_border" %>
             </div>
             <div class="ml-5">
-              <%= f.submit "新規登録",  class: "btn btn-success" %>
+              <%= f.submit "新規登録",  class: " btn btn-success" %>
             </div>
           </div>
         </thead>
       </table>
     <% end %>
     <table class="table table-bordered">
-      <thead class="thead-light text-center">
+      <thead class="table-secondary text-center">
         <tr>
           <th>郵便番号</th>
           <th>住所</th>
           <th>宛先</th>
           <th colspan="2"></th>
         </tr>
+      </thead>
         <% @addresses.each do |address| %>
           <tr>
             <td style="vertical-align: middle;"><%= address.postal_code %></td>
@@ -47,7 +48,6 @@
             </td>
           </tr>
         <% end %>
-      </thead>
     </table>
   </div>
 </div>
