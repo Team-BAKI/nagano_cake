@@ -26,9 +26,9 @@
           <div class = "card border-0 w-25" >
             <%= link_to item_path(item) do %>
               <%= image_tag item.get_image_id, size:"140x90", class:"card-img-top m-1" %>
+              <p class="card-title text-dark"><%= item.name %></p>
             <% end %>
             <div class = "item-body font-weight-bold" >
-              <%= item.name %><br>
               ￥<%= item.price.to_s(:delimited) %>
             </div>
           </div>

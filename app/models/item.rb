@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   has_many :customers, through: :cart_items
 
   has_one_attached :image_id
-
+  
   validates :name, presence: true
   validates :image_id, presence: true
   validates :introduction, presence: true
