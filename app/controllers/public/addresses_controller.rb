@@ -18,7 +18,7 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path
     else
-      render :index
+      redirect_to addresses_path
     end
   end
 
