@@ -7,7 +7,7 @@
     <div class="col-9">
       <div class="d-flex flex-wrap align-items-center">
         <div><h3 class="font-weight-bold">商品一覧</h3></div>
-        <div><span>（全<%= Item.all.count %>件）</span></div>
+        <div><span>（全<%= Item.where(is_active: 1).count %>件）</span></div>
       </div>
       <div class="items d-flex flex-wrap align-content-stretch">
         <% @items.each do |item| %>
